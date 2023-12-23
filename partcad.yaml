@@ -1,1 +1,291 @@
 desc: goBILDA parts
+url: https://gobilda.com/
+parts:
+  hardware/nut_m4_0_7mm:
+    desc: 2811 Series Zinc-Plated Steel Hex Nut (M4 x 0.7mm, 7mm Hex) - 25 Pack
+    vendor: gobilda
+    sku: 2811-0004-0007
+    count_per_sku: 25
+    url: https://www.gobilda.com/2811-series-zinc-plated-steel-hex-nut-m4-x-0-7mm-7mm-hex-25-pack/
+    type: step
+
+  hardware/plate_channel_conn:
+    desc: Steel Channel-Connector Plate - 2 Pack
+    vendor: gobilda
+    sku: 2803-0039-0022
+    count_per_sku: 2
+    url: https://www.gobilda.com/steel-channel-connector-plate-2-pack/
+    type: step
+
+  hardware/spacer_plastic_5mm_1mm:
+    desc: 1500 Series Plastic Spacer (5mm ID x 7mm OD, 1mm Thickness) - 12 Pack
+    vendor: gobilda
+    sku: 1500-0010-0005
+    count_per_sku: 12
+    url: https://www.gobilda.com/1500-series-plastic-spacer-5mm-id-x-7mm-od-1mm-thickness-12-pack/
+    type: step
+
+  hardware/spacer_plastic_8mm_1mm:
+    desc: 1500 Series Plastic Spacer (8mm ID x 10mm OD, 1mm Thickness) - 12 Pack
+    vendor: gobilda
+    sku: 1500-0010-0008
+    count_per_sku: 12
+    url: https://www.gobilda.com/1500-series-plastic-spacer-8mm-id-x-10mm-od-1mm-thickness-12-pack/
+    type: step
+
+  hardware/spacer_steel_8mm_4mm:
+    desc: 1522 Series 8mm ID Spacer (10mm OD, 4mm Length) - 4 Pack
+    vendor: gobilda
+    sku: 1522-0010-0040
+    count_per_sku: 4
+    url: https://www.gobilda.com/1522-series-8mm-id-spacer-10mm-od-4mm-length-4-pack/
+    type: step
+
+  motion/bearing_flanged_5mm:
+    desc: 1601 Series Flanged Ball Bearing (5mm ID x 14mm OD, 5mm Thickness) - 2 Pack
+    vendor: gobilda
+    sku: 1611-0514-0005
+    count_per_sku: 2
+    url: https://www.gobilda.com/1601-series-flanged-ball-bearing-5mm-id-x-14mm-od-5mm-thickness-2-pack/
+    type: step
+
+  motion/bearing_flanged_6mm:
+    desc: 1611 Series Flanged Ball Bearing (6mm ID x 14mm OD, 5mm Thickness) - 2 Pack
+    vendor: gobilda
+    sku: 1611-0514-0006
+    count_per_sku: 2
+    url: https://www.gobilda.com/1611-series-flanged-ball-bearing-6mm-id-x-14mm-od-5mm-thickness-2-pack/
+    type: step
+
+  motion/bearing_flanged_8mm:
+    desc: 1611 Series Flanged Ball Bearing (8mm ID x 14mm OD, 5mm Thickness) - 2 Pack
+    vendor: gobilda
+    sku: 1611-0514-0008
+    count_per_sku: 2
+    url: https://www.gobilda.com/1611-series-flanged-ball-bearing-8mm-id-x-14mm-od-5mm-thickness-2-pack/
+    type: step
+
+  motion/bearing_flanged_8mmREX:
+    desc: 1611 Series Flanged Ball Bearing (8mm REX ID x 14mm OD, 5mm Thickness) - 2 Pack
+    vendor: gobilda
+    sku: 1611-0514-4008
+    count_per_sku: 2,
+    url: https://www.gobilda.com/1611-series-flanged-ball-bearing-8mm-rex-id-x-14mm-od-5mm-thickness-2-pack/
+    type: step
+
+  motion/collar_clamping_8mmREX:
+    desc: 2910 Series Aluminum Clamping Collar (8mm REX ID x 20mm OD, 9mm Length)
+    vendor: gobilda
+    sku: 2910-0920-4008
+    url: https://www.gobilda.com/2910-series-aluminum-clamping-collar-8mm-rex-id-x-20mm-od-9mm-length/
+    type: step
+
+  motion/collar_set_6mm:
+    desc: 2920 Series Steel Set-Screw Collar (6mm Bore) - 2 Pack
+    vendor: gobilda
+    sku: 2920-0001-0006
+    count_per_sku: 2,
+    url: https://www.gobilda.com/2920-series-steel-set-screw-collar-6mm-bore-2-pack/
+    type: step
+
+  motion/coupler_hyper_8mm_8mmREX:
+    desc: 4007 Series Hyper Coupler (8mm Round Bore to 8mm REX Bore)
+    vendor: gobilda
+    sku: 4007-0008-4008
+    url: https://www.gobilda.com/4007-series-hyper-coupler-8mm-round-bore-to-8mm-rex-bore/
+    type: step
+
+  motion/hub_hyper_8mmREX:
+    desc: 1310 Series Hyper Hub (8mm REX Bore)
+    vendor: gobilda
+    sku: 1310-0016-4008
+    url: https://www.gobilda.com/1310-series-hyper-hub-8mm-rex-bore/
+    type: step
+
+  motion/hub_sonic_5mm:
+    desc: 1309 Series Sonic Hub (5mm Bore)
+    vendor: gobilda
+    sku: 1309-0016-0005
+    url: https://www.gobilda.com/1309-series-sonic-hub-5mm-bore/
+    type: step
+
+  motion/hub_sonic_8mmREX:
+    desc: 1309 Series Sonic Hub (8mm REX Bore)
+    vendor: gobilda
+    sku: 1309-0016-4008
+    url: https://www.gobilda.com/1309-series-sonic-hub-8mm-rex-bore/
+    type: step
+
+  motion/servo_attach_arm_25t:
+    desc: 1900 Series Single Servo Arm (25 Tooth Spline, 32mm Length)
+    vendor: gobilda
+    sku: 1900-0025-0104
+    url: https://www.gobilda.com/1900-series-single-servo-arm-25-tooth-spline-32mm-length/
+    type: step
+
+  motion/servo_attach_hub_low_25t:
+    desc: 1906 Series Low-Profile Servo Hub (25 Tooth Spline, 32mm Diameter)
+    vendor: gobilda
+    sku: 1906-0025-0032
+    url: https://www.gobilda.com/1906-series-low-profile-servo-hub-25-tooth-spline-32mm-diameter/
+    type: step
+
+  motion/shaft_6mmD_70mm:
+    desc: 2101 Series Stainless Steel D-Shaft (6mm Diameter, 70mm Length)
+    vendor: gobilda
+    sku: 2101-0006-0070
+    url: https://www.gobilda.com/2101-series-stainless-steel-d-shaft-6mm-diameter-70mm-length/
+    type: step
+
+  motion/shaft_8mmREX_56mm:
+    desc: 2106 Series Stainless Steel REX Shaft (8mm Diameter, 56mm Length)
+    vendor: gobilda
+    sku: 2106-4008-0560
+    url: https://www.gobilda.com/2106-series-stainless-steel-rex-shaft-8mm-diameter-56mm-length/
+    type: step
+
+  motion/shaft_8mmREX_64mm:
+    desc: 2106 Series Stainless Steel REX Shaft (8mm Diameter, 64mm Length)
+    vendor: gobilda
+    sku: 2106-4008-0640
+    url: https://www.gobilda.com/2106-series-stainless-steel-rex-shaft-8mm-diameter-64mm-length/
+    type: step
+
+  motion/shaft_8mmREX_72mm:
+    desc: 2106 Series Stainless Steel REX Shaft (8mm Diameter, 72mm Length)
+    vendor: gobilda
+    sku: 2106-4008-0720
+    url: https://www.gobilda.com/2106-series-stainless-steel-rex-shaft-8mm-diameter-72mm-length/
+    type: step
+
+  motion/shaft_8mmREX_80mm:
+    desc: 2106 Series Stainless Steel REX Shaft (8mm Diameter, 80mm Length)
+    vendor: gobilda
+    sku: 2106-4008-0800
+    url: https://www.gobilda.com/2106-series-stainless-steel-rex-shaft-8mm-diameter-80mm-length/
+    type: step
+
+  motion/shaft_8mmREX_clip:
+    desc: 2106 Series Stainless Steel REX Shaft (8mm Diameter) Clip
+    type: step
+    comment: comes included with REX shafts
+
+  motion/servo_hs_488hb:
+    desc: Hitec HS-488HB Servo
+    vendor: gobilda
+    sku: 33488
+    url: https://www.gobilda.com/hitec-hs-488hb-servo/
+    type: step
+
+  motion/sprocket_plastic_14mm_16t:
+    desc: 8mm Pitch Acetal Hub-Mount Sprocket (14mm Bore, 16 Tooth)
+    vendor: gobilda
+    sku: 3311-0014-0016
+    url: https://www.gobilda.com/8mm-pitch-acetal-hub-mount-sprocket-14mm-bore-16-tooth/
+    type: step
+
+  motion/sprocket_steel_14mm_14t:
+    desc: 8mm Pitch Steel Hub-Mount Sprocket (14mm Bore, 14 Tooth)
+    vendor: gobilda
+    sku: 3310-0014-0014
+    url: https://www.gobilda.com/8mm-pitch-steel-hub-mount-sprocket-14mm-bore-14-tooth/
+    type: step
+
+  motion/worm_8mmREX:
+    desc: 2313 Series Stainless Steel, MOD 1.25 Worm (8mm REX Bore, 33mm Length)
+    vendor: gobilda
+    sku: 2313-4008-0033
+    url: https://www.gobilda.com/2313-series-stainless-steel-mod-1-25-worm-8mm-rex-bore-33mm-length/
+    type: step
+
+  motion/worm_gear_28t:
+    desc: https://www.gobilda.com/2314-series-brass-mod-1-25-hub-mount-worm-gear-14mm-bore-28-tooth/
+    vendor: gobilda
+    sku: 2314-0014-0028
+    url: https://www.gobilda.com/2314-series-brass-mod-1-25-hub-mount-worm-gear-14mm-bore-28-tooth/
+    type: step
+
+  structure/beam_15:
+    desc: 1106 Series Square Beam (15 Hole, 120mm Length)
+    vendor: gobilda
+    sku: 1106-0015-0120
+    url: https://www.gobilda.com/1106-series-square-beam-15-hole-120mm-length/
+    type: step
+
+  structure/bracket_flat_1_2:
+    desc: 1108 Series Flat Pattern Bracket (1-2)
+    vendor: gobilda
+    sku: 1108-0001-0002
+    url: https://www.gobilda.com/1108-series-flat-pattern-bracket-1-2/
+    type: step
+
+  structure/bracket_flat_2_3:
+    desc: 1108 Series Flat Pattern Bracket (2-3)
+    vendor: gobilda
+    sku: 1108-0002-0003
+    url: https://www.gobilda.com/1108-series-flat-pattern-bracket-2-3/
+    type: step
+
+  structure/mount_quad_block:
+    desc: 1201 Series Quad Block Pattern Mount (43-2)
+    vendor: gobilda
+    sku: 1201-0043-0002
+    url: https://www.gobilda.com/1201-series-quad-block-pattern-mount-43-2/
+    type: step
+
+  structure/mount_servo_43mm_std:
+    desc: 1802 Series Servo Frame (43mm Width, for Standard Size Servos)
+    vendor: gobilda
+    sku: 1802-0043-0001
+    url: https://www.gobilda.com/1802-series-servo-frame-43mm-width-for-standard-size-servos/
+    type: step
+
+  structure/standoff_m4_43mm:
+    desc: 1501 Series M4 x 0.7mm Standoff (6mm OD, 43mm Length) - 4 Pack
+    vendor: gobilda
+    sku: 1501-0006-0430
+    count_per_sku: 4,
+    url: https://www.gobilda.com/1501-series-m4-x-0-7mm-standoff-6mm-od-43mm-length-4-pack/
+    type: step
+
+  structure/u_channel_2:
+    desc: 1120 Series U-Channel (2 Hole, 72mm Length)
+    vendor: gobilda
+    sku: 1120-0002-0072
+    url: https://www.gobilda.com/1120-series-u-channel-2-hole-72mm-length/
+    type: step
+
+  structure/u_channel_5:
+    desc: 1120 Series U-Channel (5 Hole, 144mm Length)
+    vendor: gobilda
+    sku: 1120-0005-0144
+    url: https://www.gobilda.com/1120-series-u-channel-5-hole-144mm-length/
+    type: step
+
+  structure/u_channel_7:
+    desc: 1120 Series U-Channel (7 Hole, 192mm Length)
+    vendor: gobilda
+    sku: 1120-0007-0192
+    url: https://www.gobilda.com/1120-series-u-channel-7-hole-192mm-length/
+    type: step
+
+  structure/u_channel_9:
+    desc: 1120 Series U-Channel (9 Hole, 240mm Length)
+    vendor: gobilda
+    sku: 1120-0009-0240
+    url: https://www.gobilda.com/1120-series-u-channel-9-hole-240mm-length/
+    type: step
+
+  structure/u_channel_low_3:
+    desc: 1121 Series Low-Side U-Channel (3 Hole, 96mm Length)
+    vendor: gobilda
+    sku: 1121-0003-0096
+    url: https://www.gobilda.com/1121-series-low-side-u-channel-3-hole-96mm-length/
+    type: step
+
+  structure/u_channel_low_7:
+    desc: 1121 Series Low-Side U-Channel (7 Hole, 192mm Length)
+    vendor: gobilda
+    sku: 1121-0007-0192
+    url: https://www.gobilda.com/1121-series-low-side-u-channel-7-hole-192mm-length/
+    type: step
