@@ -1,5 +1,112 @@
 desc: goBILDA parts
-url: https://gobilda.com/
+url: "https://gobilda.com/"
+
+import:
+  pub:
+    onlyInRoot: True
+    type: git
+    url: https://github.com/openvmp/partcad-index/
+
+sketches:
+  8mmREX:
+    desc: 8mm REX(TM) shafting
+    url: "https://www.gobilda.com/stainless-steel-rex-shafting"
+    type: basic
+    circle: 4
+
+interfaces:
+  ### Shafts ###
+  # 8mm REX shafting
+  8mmREX:
+    desc: 8mm REX(TM) shafting
+    abstract: True
+    ports:
+      8mmREX:
+        sketch: 8mmREX
+  8mmREX-opening:
+    desc: Opening for 8mm REX shaft
+    abstract: True
+    inherits:
+      8mmREX: opening
+  8mmREX-thru:
+    desc: Through hole for 8mm REX shaft
+    inherits:
+      8mmREX-opening: thru
+    parameters:
+      turnZ:
+        min: -360
+        max: 360
+        default: 0
+    mates:
+      - "/pub/std/metric/m:m8-thru"
+  {% for depth in [0.7, 5, 8, 32] %}
+  8mmREX-thru-{{ depth }}:
+    desc: Through hole of {{ depth }}mm depth for 8mm REX shaft
+    inherits:
+      8mmREX-thru: {{ depth }}mm
+    mates:
+      - 8mmREX-thru
+      # 8mmREX-thru:
+      #   turnZ: 30
+  {% endfor %}
+  8mmREX-shaft:
+    desc: 8mm REX shaft interface
+    inherits:
+      8mmREX: shaft
+    parameters:
+      moveZ:
+        desc: Offset on the shaft
+    mates:
+      - 8mmREX-thru
+      - "/pub/std/metric/m:m8-thru"
+
+  ### Patterns ###
+  # 16mm pattern
+{% macro pattern_4xM4_16mm(opening) %}
+"/pub/std/metric/m:m4-{{ opening }}":
+  TL: [[-8, 8, 0], [0, 0, 1], 270]
+  TR: [[8, 8, 0], [0, 0, 1], 180]
+  BR: [[8, -8, 0], [0, 0, 1], 90]
+  BL: [[-8, -8, 0], [0, 0, 1], 0]
+{% endmacro %}
+  4xM4-16mm-pattern:
+    desc: 4 x M4 at 16mm pattern
+  4xM4-16mm-pattern-thru:
+    desc: 4 x M4 at 16mm pattern
+    inherits:
+      4xM4-16mm-pattern: thru
+      {{ pattern_4xM4_16mm("thru") | indent(6) }}
+    mates:
+      - 4xM4-16mm-pattern
+  # 4xM4-16mm-pattern-thru-threaded:
+  #   desc: 4 x M4 at 16mm pattern, thru, threaded
+  #   inherits:
+  #     4xM4-16mm-pattern-thru: threaded
+  4xM4-16mm-pattern-thru-1.5mm:
+    desc: 4 x M4 at 16mm pattern, thru, 1.5mm thick
+    inherits:
+      4xM4-16mm-pattern: 1.5mm
+      {{ pattern_4xM4_16mm("thru-1.5") | indent(6) }}
+    mates:
+      - 4xM4-16mm-pattern
+  4xM4-16mm-pattern-thru-8mm:
+    desc: 4 x M4 at 16mm pattern, thru, 8mm thick
+    inherits:
+      4xM4-16mm-pattern: thru-8mm
+      {{ pattern_4xM4_16mm("thru-8") | indent(6) }}
+    mates:
+      - 4xM4-16mm-pattern
+  4xM4-16mm-pattern-threaded-thru-4mm:
+    desc: 4 x M4 at 16mm pattern, thru, 8mm thick
+    inherits:
+      4xM4-16mm-pattern: thru-8mm
+      {{ pattern_4xM4_16mm("threaded-thru-4") | indent(6) }}
+    mates:
+      - 4xM4-16mm-pattern
+
+# mates:
+#   4xM4-16mm-pattern-thru: 4xM4-16mm-pattern-thru
+
 parts:
   hardware/nut_m4_0_7mm:
     desc: 2811 Series Zinc-Plated Steel Hex Nut (M4 x 0.7mm, 7mm Hex) - 25 Pack
@@ -17,6 +124,16 @@ parts:
     url: https://www.gobilda.com/steel-channel-connector-plate-2-pack/
     type: step
 
+  hardware/screw_m4_0.7mm_12mm:
+    desc: 2802 Series Zinc-Plated Steel Button Head Screw (M4 x 0.7mm, 12mm Length) - 25 Pack
+    vendor: gobilda
+    sku: 2802-0004-0012
+    count_per_sku: 25
+    url: https://www.gobilda.com/2802-series-zinc-plated-steel-button-head-screw-m4-x-0-7mm-12mm-length-25-pack/
+    type: step
+    implements:
+      "/pub/std/metric/m:m4-screw-12": [[0, 0, -2.2], [1, 0, 0], 0]
+
   hardware/spacer_plastic_5mm_1mm:
     desc: 1500 Series Plastic Spacer (5mm ID x 7mm OD, 1mm Thickness) - 12 Pack
     vendor: gobilda
@@ -32,6 +149,10 @@ parts:
     count_per_sku: 12
     url: https://www.gobilda.com/1500-series-plastic-spacer-8mm-id-x-10mm-od-1mm-thickness-12-pack/
     type: step
+    implements:
+      "/pub/std/metric/m:m8-thru-1":
+        side0: [[0, 0, 0], [1, 0, 0], -90]
+        side1: [[0, 1, 0], [1, 0, 0], 90]
 
   hardware/spacer_steel_8mm_4mm:
     desc: 1522 Series 8mm ID Spacer (10mm OD, 4mm Length) - 4 Pack
@@ -40,6 +161,10 @@ parts:
     count_per_sku: 4
     url: https://www.gobilda.com/1522-series-8mm-id-spacer-10mm-od-4mm-length-4-pack/
     type: step
+    implements:
+      "/pub/std/metric/m:m8-thru-4":
+        side0: [[0, -2, 0], [1, 0, 0], -90]
+        side1: [[0, 2, 0], [1, 0, 0], 90]
 
   motion/bearing_flanged_5mm:
     desc: 1601 Series Flanged Ball Bearing (5mm ID x 14mm OD, 5mm Thickness) - 2 Pack
@@ -72,6 +197,13 @@ parts:
     count_per_sku: 2,
     url: https://www.gobilda.com/1611-series-flanged-ball-bearing-8mm-rex-id-x-14mm-od-5mm-thickness-2-pack/
     type: step
+    implements:
+      8mmREX-thru-5:
+        # clean-side: [[0, 0, 0], [1, 0, 0], -90]
+        # flange-side: [[0, 5, 0], [1, 0, 0], 90]
+        clean-side: [[0, 0, 0], [0.94, -0.25, -0.25], 266.16]
+        flange-side: [[0, 5, 0], [-0.94, 0.25, -0.25], 266.16]
+      "/pub/std/metric/m:m14-shaft-2": [[0, 4, 0], [1, 0, 0], -90]
 
   motion/collar_clamping_8mmREX:
     desc: 2910 Series Aluminum Clamping Collar (8mm REX ID x 20mm OD, 9mm Length)
@@ -115,6 +247,19 @@ parts:
     sku: 1309-0016-4008
     url: https://www.gobilda.com/1309-series-sonic-hub-8mm-rex-bore/
     type: step
+    implements:
+      4xM4-16mm-pattern-thru-8mm:
+        ledged: [[-3.875, 17.666, -6.4], [0, 1, 0], 180]
+        flat: [[-3.875, 17.666, -14.4], [0, 1, 0], 0]
+      8mmREX-thru-8:
+        ledged: [[-3.875, 17.666, -4.4], [0.79, -0.61, 0.0], 180]
+        flat: [[-3.875, 17.666, -14.4], [0, 0, 1], -15]
+      # The hub provides a ledge that can be used as a 14mm wide 2mm long shaft
+      "/pub/std/metric/m:m14-shaft-2": [[-3.94, 17.67, -6.4], [0, 1, 0], 180]
+      # The outer perimeter of the hub can be used as a 32m wide 8mm long shaft
+      "/pub/std/metric/m:m32-shaft-8":
+        ledged: [[-3.875, 17.666, -6.4], [0, 1, 0], 0]
+        flat: [[-3.875, 17.666, -14.4], [0, 1, 0], 180]
 
   motion/servo_attach_arm_25t:
     desc: 1900 Series Single Servo Arm (25 Tooth Spline, 32mm Length)
@@ -157,6 +302,11 @@ parts:
     sku: 2106-4008-0720
     url: https://www.gobilda.com/2106-series-stainless-steel-rex-shaft-8mm-diameter-72mm-length/
     type: step
+    implements:
+      8mmREX-shaft:
+        clip-side: [[-43.4, 23.41, 7], [1, 0, 0], 90]
+        clip: [[-43.4, 27.41, 7], [1, 0, 0], 90]
+        clean-side: [[-43.4, {{23.41 + 72.02}}, 7], [1, 0, 0], -90]
 
   motion/shaft_8mmREX_80mm:
     desc: 2106 Series Stainless Steel REX Shaft (8mm Diameter, 80mm Length)
@@ -169,6 +319,10 @@ parts:
     desc: 2106 Series Stainless Steel REX Shaft (8mm Diameter) Clip
     type: step
     comment: comes included with REX shafts
+    implements:
+      8mmREX-thru-0.7:
+        side0: [[-43.4, 26.71, 7], [1, 0, 0], 90]
+        side1: [[-43.4, 27.41, 7], [1, 0, 0], -90]
 
   motion/servo_hs_488hb:
     desc: Hitec HS-488HB Servo
@@ -197,6 +351,10 @@ parts:
     sku: 2313-4008-0033
     url: https://www.gobilda.com/2313-series-stainless-steel-mod-1-25-worm-8mm-rex-bore-33mm-length/
     type: step
+    implements:
+      8mmREX-thru-32:
+        side0: [[-5.25, -18.02, 33.9375], [1, 0, 0], -90]
+        side1: [[-5.25, 14.98, 33.9375], [1, 0, 0], 90]
 
   motion/worm_gear_28t:
     desc: https://www.gobilda.com/2314-series-brass-mod-1-25-hub-mount-worm-gear-14mm-bore-28-tooth/
@@ -204,6 +362,16 @@ parts:
     sku: 2314-0014-0028
     url: https://www.gobilda.com/2314-series-brass-mod-1-25-hub-mount-worm-gear-14mm-bore-28-tooth/
     type: step
+    implements:
+      4xM4-16mm-pattern-thru-1.5mm:
+        inner: [[0.5, 0, 0], [0.57735, 0.57735, 0.57735], 120]
+        outer: [[2, 0, 0], [-0.57735, -0.57735, 0.57735], 120]
+      4xM4-16mm-pattern-threaded-thru-4mm:
+        inner: [[0.5, 0, 0], [-0.68, -0.28, -0.68], 211.4]
+        outer: [[4.5, 0, 0], [0.36, 0.86, -0.36], 261.58]
+      "/pub/std/metric/m:m14-thru-2":
+        inner: [[0.5, 0, 0], [0, 1, 0], 90]
+        outer: [[4.5, 0, 0], [0, 1, 0], -90]
 
   structure/beam_15:
     desc: 1106 Series Square Beam (15 Hole, 120mm Length)
@@ -232,6 +400,63 @@ parts:
     sku: 1201-0043-0002
     url: https://www.gobilda.com/1201-series-quad-block-pattern-mount-43-2/
     type: step
+    implements:
+      "/pub/std/metric/m:m4-threaded-thru-8":
+        side0-0: [[-21.5, 8, -16], [0, 1, 0], 90]
+        side0-1: [[-21.5, 8, 16], [0, 1, 0], 90]
+        side1-0: [[-16, 8, -21.5], [0, 1, 0], 0]
+        side1-1: [[16, 8, -21.5], [0, 1, 0], 0]
+        side2-0: [[21.5, 8, 16], [0, 1, 0], -90]
+        side2-1: [[21.5, 8, -16], [0, 1, 0], -90]
+        side3-0: [[16, 8, 21.5], [0, 1, 0], 180]
+        side3-1: [[-16, 8, 21.5], [0, 1, 0], 180]
+      "/pub/std/metric/m:m4-threaded-thru-12":
+        front-0-0-00: [[-16, 0, 16], [1, 0, 0], -90]
+        front-0-1-00: [[-16, 0, -16], [1, 0, 0], -90]
+        front-1-0-10: [[16, 0, 16], [1, 0, 0], -90]
+        front-1-1-10: [[16, 0, -16], [1, 0, 0], -90]
+        rear-0-0: [[-16, 12, 16], [1, 0, 0], 90]
+        rear-0-1: [[-16, 12, -16], [1, 0, 0], 90]
+        rear-1-0: [[16, 12, 16], [1, 0, 0], 90]
+        rear-1-1: [[16, 12, -16], [1, 0, 0], 90]
+      "/pub/std/metric/m:m4-threaded-thru-4":
+        front-0-l: [[{{ -16 * SQRT_2 / 2 }}, 0, 0], [1, 0, 0], -90]
+        front-0-t: [[0, 0, {{ 16 * SQRT_2 / 2 }}], [1, 0, 0], -90]
+        front-0-b: [[0, 0, {{ -16 * SQRT_2 / 2 }}], [1, 0, 0], -90]
+        front-0-r: [[{{ 16 * SQRT_2 / 2 }}, 0, 0], [1, 0, 0], -90]
+        rear-0-l: [[{{ -16 * SQRT_2 / 2 }}, 4, 0], [1, 0, 0], 90]
+        rear-0-t: [[0, 4, {{ 16 * SQRT_2 / 2 }}], [1, 0, 0], 90]
+        rear-0-b: [[0, 4, {{ -16 * SQRT_2 / 2 }}], [1, 0, 0], 90]
+        rear-0-r: [[{{ 16 * SQRT_2 / 2 }}, 4, 0], [1, 0, 0], 90]
+      "/pub/std/metric/m:m4-thru-4":
+        front-0-0-10: [[-8, 0, 16], [1, 0, 0], -90]
+        front-0-0-01: [[-16, 0, 8], [1, 0, 0], -90]
+        front-0-1-10: [[-8, 0, -16], [1, 0, 0], -90]
+        front-0-1-01: [[-16, 0, -8], [1, 0, 0], -90]
+        front-1-0-00: [[8, 0, 16], [1, 0, 0], -90]
+        front-1-0-11: [[16, 0, 8], [1, 0, 0], -90]
+        front-1-1-00: [[8, 0, -16], [1, 0, 0], -90]
+        front-1-1-11: [[16, 0, -8], [1, 0, 0], -90]
+        rear-0-0-10: [[-8, 4, 16], [1, 0, 0], 90]
+        rear-0-0-01: [[-16, 4, 8], [1, 0, 0], 90]
+        rear-0-1-10: [[-8, 4, -16], [1, 0, 0], 90]
+        rear-0-1-01: [[-16, 4, -8], [1, 0, 0], 90]
+        rear-1-0-00: [[8, 4, 16], [1, 0, 0], 90]
+        rear-1-0-11: [[16, 4, 8], [1, 0, 0], 90]
+        rear-1-1-00: [[8, 4, -16], [1, 0, 0], 90]
+        rear-1-1-11: [[16, 4, -8], [1, 0, 0], 90]
+      "/pub/std/metric/m:m4-thru-4-slotted-2":
+        front-0-0-11: [[-8, 0, 8], [1, 0, 0], -90]
+        front-0-1-11: [[-8, 0, -8], [1, 0, 0], -90]
+        front-1-0-01: [[8, 0, 8], [1, 0, 0], -90]
+        front-1-1-01: [[8, 0, -8], [1, 0, 0], -90]
+        rear-0-0-11: [[-8, 4, 8], [1, 0, 0], 90]
+        rear-0-1-11: [[-8, 4, -8], [1, 0, 0], 90]
+        rear-1-0-01: [[8, 4, 8], [1, 0, 0], 90]
+        rear-1-1-01: [[8, 4, -8], [1, 0, 0], 90]
+      "/pub/std/metric/m:m14-hole-3.5":
+        front: [[0, 1, 0], [1, 0, 0], -90]
+        rear: [[0, 4, 0], [1, 0, 0], 90]
 
   structure/mount_servo_43mm_std:
     desc: 1802 Series Servo Frame (43mm Width, for Standard Size Servos)
@@ -248,12 +473,105 @@ parts:
     url: https://www.gobilda.com/1501-series-m4-x-0-7mm-standoff-6mm-od-43mm-length-4-pack/
     type: step
 
+
+{% macro channel_pattern(size) %}
+"/pub/std/metric/m:m14-hole-2.5":
+  {% for i in range(size) %}
+  top-inner-{{i}}: [[0, {{ 24 + 24*i }}, 0], [1, 0, 0], 0]
+  top-outer-{{i}}: [[0, {{ 24 + 24*i }}, 2.5], [1, 0, 0], 180]
+  right-inner-{{i}}: [[21.5, {{ 24 + 24*i }}, -21.5], [0, 1, 0], 90]
+  right-outer-{{i}}: [[24, {{ 24 + 24*i }}, -21.5], [0, 1, 0], -90]
+  left-inner-{{i}}: [[-21.5, {{ 24 + 24*i }}, -21.5], [0, 1, 0], -90]
+  left-outer-{{i}}: [[-24, {{ 24 + 24*i }}, -21.5], [0, 1, 0], 90]
+  {% endfor %}
+
+"/pub/std/metric/m:m4-thru-2.5":
+  {% for j in range(size + 1) %}
+  left-outer-{{ j }}-0-00: [[-24, {{ 24 * j + 8 }}, {{ -21.5 + 16 }}], [0, 1, 0], 90]
+  left-outer-{{ j }}-0-10: [[-24, {{ 24 * j + 16 }}, {{ -21.5 + 16 }}], [0, 1, 0], 90]
+  left-outer-{{ j }}-1-00: [[-24, {{ 24 * j + 8 }}, {{ -21.5 - 16 }}], [0, 1, 0], 90]
+  left-outer-{{ j }}-1-10: [[-24, {{ 24 * j + 16 }}, {{ -21.5 - 16 }}], [0, 1, 0], 90]
+  left-inner-{{ j }}-0-00: [[-21.5, {{ 24 * j + 8 }}, {{ -21.5 + 16 }}], [0, 1, 0], -90]
+  left-inner-{{ j }}-0-10: [[-21.5, {{ 24 * j + 16 }}, {{ -21.5 + 16 }}], [0, 1, 0], -90]
+  left-inner-{{ j }}-1-00: [[-21.5, {{ 24 * j + 8 }}, {{ -21.5 - 16 }}], [0, 1, 0], -90]
+  left-inner-{{ j }}-1-10: [[-21.5, {{ 24 * j + 16 }}, {{ -21.5 - 16 }}], [0, 1, 0], -90]
+  right-outer-{{ j }}-0-00: [[24, {{ 24 * j + 8 }}, {{ -21.5 + 16 }}], [0, 1, 0], -90]
+  right-outer-{{ j }}-0-10: [[24, {{ 24 * j + 16 }}, {{ -21.5 + 16 }}], [0, 1, 0], -90]
+  right-outer-{{ j }}-1-00: [[24, {{ 24 * j + 8 }}, {{ -21.5 - 16 }}], [0, 1, 0], -90]
+  right-outer-{{ j }}-1-10: [[24, {{ 24 * j + 16 }}, {{ -21.5 - 16 }}], [0, 1, 0], -90]
+  right-inner-{{ j }}-0-00: [[21.5, {{ 24 * j + 8 }}, {{ -21.5 + 16 }}], [0, 1, 0], 90]
+  right-inner-{{ j }}-0-10: [[21.5, {{ 24 * j + 16 }}, {{ -21.5 + 16 }}], [0, 1, 0], 90]
+  right-inner-{{ j }}-1-00: [[21.5, {{ 24 * j + 8 }}, {{ -21.5 - 16 }}], [0, 1, 0], 90]
+  right-inner-{{ j }}-1-10: [[21.5, {{ 24 * j + 16 }}, {{ -21.5 - 16 }}], [0, 1, 0], 90]
+  top-outer-{{ j }}-0-00: [[16, {{ 24 * j + 8 }},  2.5], [0, 1, 0], 180]
+  top-outer-{{ j }}-0-10: [[16, {{ 24 * j + 16 }},  2.5], [0, 1, 0], 180]
+  top-outer-{{ j }}-1-00: [[-16, {{ 24 * j + 8 }}, 2.5], [0, 1, 0], 180]
+  top-outer-{{ j }}-1-10: [[-16, {{ 24 * j + 16 }}, 2.5], [0, 1, 0], 180]
+  top-inner-{{ j }}-0-00: [[16, {{ 24 * j + 8 }},  0], [0, 1, 0], 0]
+  top-inner-{{ j }}-0-10: [[16, {{ 24 * j + 16 }},  0], [0, 1, 0], 0]
+  top-inner-{{ j }}-1-00: [[-16, {{ 24 * j + 8 }}, 0], [0, 1, 0], 0]
+  top-inner-{{ j }}-1-10: [[-16, {{ 24 * j + 16 }}, 0], [0, 1, 0], 0]
+  {% endfor %}
+
+"/pub/std/metric/m:m4-thru-4-slotted-2":
+  {% for j in range(size + 1) %}
+  left-outer-{{ j }}-0-01: [[-24, {{ 24 * j + 8 }}, {{ -21.5 + 8 }}], [0, 1, 0], 90]
+  left-outer-{{ j }}-0-11: [[-24, {{ 24 * j + 16 }}, {{ -21.5 + 8 }}], [0, 1, 0], 90]
+  left-outer-{{ j }}-1-01: [[-24, {{ 24 * j + 8 }}, {{ -21.5 - 8 }}], [0, 1, 0], 90]
+  left-outer-{{ j }}-1-11: [[-24, {{ 24 * j + 16 }}, {{ -21.5 - 8 }}], [0, 1, 0], 90]
+  left-inner-{{ j }}-0-01: [[-21.5, {{ 24 * j + 8 }}, {{ -21.5 + 8 }}], [0, 1, 0], -90]
+  left-inner-{{ j }}-0-11: [[-21.5, {{ 24 * j + 16 }}, {{ -21.5 + 8 }}], [0, 1, 0], -90]
+  left-inner-{{ j }}-1-01: [[-21.5, {{ 24 * j + 8 }}, {{ -21.5 - 8 }}], [0, 1, 0], -90]
+  left-inner-{{ j }}-1-11: [[-21.5, {{ 24 * j + 16 }}, {{ -21.5 - 8 }}], [0, 1, 0], -90]
+  right-outer-{{ j }}-0-01: [[24, {{ 24 * j + 8 }}, {{ -21.5 + 8 }}], [0, 1, 0], -90]
+  right-outer-{{ j }}-0-11: [[24, {{ 24 * j + 16 }}, {{ -21.5 + 8 }}], [0, 1, 0], -90]
+  right-outer-{{ j }}-1-01: [[24, {{ 24 * j + 8 }}, {{ -21.5 - 8 }}], [0, 1, 0], -90]
+  right-outer-{{ j }}-1-11: [[24, {{ 24 * j + 16 }}, {{ -21.5 - 8 }}], [0, 1, 0], -90]
+  right-inner-{{ j }}-0-01: [[21.5, {{ 24 * j + 8 }}, {{ -21.5 + 8 }}], [0, 1, 0], 90]
+  right-inner-{{ j }}-0-11: [[21.5, {{ 24 * j + 16 }}, {{ -21.5 + 8 }}], [0, 1, 0], 90]
+  right-inner-{{ j }}-1-01: [[21.5, {{ 24 * j + 8 }}, {{ -21.5 - 8 }}], [0, 1, 0], 90]
+  right-inner-{{ j }}-1-11: [[21.5, {{ 24 * j + 16 }}, {{ -21.5 - 8 }}], [0, 1, 0], 90]
+  top-outer-{{ j }}-0-01: [[8, {{ 24 * j + 8 }}, 2.5], [0, 1, 0], 180]
+  top-outer-{{ j }}-0-11: [[8, {{ 24 * j + 16 }}, 2.5], [0, 1, 0], 180]
+  top-outer-{{ j }}-1-01: [[-8, {{ 24 * j + 8 }}, 2.5], [0, 1, 0], 180]
+  top-outer-{{ j }}-1-11: [[-8, {{ 24 * j + 16 }}, 2.5], [0, 1, 0], 180]
+  top-inner-{{ j }}-0-01: [[8, {{ 24 * j + 8 }}, 0], [0, 1, 0], 0]
+  top-inner-{{ j }}-0-11: [[8, {{ 24 * j + 16 }}, 0], [0, 1, 0], 0]
+  top-inner-{{ j }}-1-01: [[-8, {{ 24 * j + 8 }}, 0], [0, 1, 0], 0]
+  top-inner-{{ j }}-1-11: [[-8, {{ 24 * j + 16 }}, 0], [0, 1, 0], 0]
+  left-outer-{{ j }}-c: [[-24, {{ 24 * (j + 1) - 8 * SQRT_2 }}, -21.5], [0, 1, 0], 90]
+  left-inner-{{ j }}-c: [[-21.5, {{ 24 * (j + 1) - 8 * SQRT_2 }}, -21.5], [0, 1, 0], -90]
+  right-outer-{{ j }}-c: [[24, {{ 24 * (j + 1) - 8 * SQRT_2 }}, -21.5], [0, 1, 0], -90]
+  right-inner-{{ j }}-c: [[21.5, {{ 24 * (j + 1) - 8 * SQRT_2 }}, -21.5], [0, 1, 0], 90]
+  top-outer-{{ j }}-c: [[0, {{ 24 * (j + 1) - 8 * SQRT_2 }}, 2.5], [0, 1, 0], 180]
+  top-inner-{{ j }}-c: [[0, {{ 24 * (j + 1) - 8 * SQRT_2 }}, 0], [0, 1, 0], 0]
+  {% endfor %}
+
+"/pub/std/metric/m:m4-thru-4-slotted-4":
+  {% for j in range(size) %}
+  left-outer-{{ j }}-t: [[-24, {{ 24 * (j + 1) }}, -5.5], [0, 1, 0], 90]
+  left-inner-{{ j }}-t: [[-21.5, {{ 24 * (j + 1) }}, -5.5], [0, 1, 0], -90]
+  right-outer-{{ j }}-t: [[24, {{ 24 * (j + 1) }}, -5.5], [0, 1, 0], -90]
+  right-inner-{{ j }}-t: [[21.5, {{ 24 * (j + 1) }}, -5.5], [0, 1, 0], 90]
+  top-outer-{{ j }}-t: [[-16, {{ 24 * (j + 1) }}, 2.5], [0, 1, 0], 180]
+  top-inner-{{ j }}-t: [[-16, {{ 24 * (j + 1) }}, 0], [0, 1, 0], 0]
+  left-outer-{{ j }}-b: [[-24, {{ 24 * (j + 1) }}, -37.5], [0, 1, 0], 90]
+  left-inner-{{ j }}-b: [[-21.5, {{ 24 * (j + 1) }}, -37.5], [0, 1, 0], -90]
+  right-outer-{{ j }}-b: [[24, {{ 24 * (j + 1) }}, -37.5], [0, 1, 0], -90]
+  right-inner-{{ j }}-b: [[21.5, {{ 24 * (j + 1) }}, -37.5], [0, 1, 0], 90]
+  top-outer-{{ j }}-b: [[16, {{ 24 * (j + 1) }}, 2.5], [0, 1, 0], 180]
+  top-inner-{{ j }}-b: [[16, {{ 24 * (j + 1) }}, 0], [0, 1, 0], 0]
+  {% endfor %}
+{% endmacro %}
+
   structure/u_channel_2:
     desc: 1120 Series U-Channel (2 Hole, 72mm Length)
     vendor: gobilda
     sku: 1120-0002-0072
     url: https://www.gobilda.com/1120-series-u-channel-2-hole-72mm-length/
     type: step
+    implements:
+      {{ channel_pattern(2) | indent(8) }}
 
   structure/u_channel_5:
     desc: 1120 Series U-Channel (5 Hole, 144mm Length)
@@ -261,6 +579,8 @@ parts:
     sku: 1120-0005-0144
     url: https://www.gobilda.com/1120-series-u-channel-5-hole-144mm-length/
     type: step
+    implements:
+      {{ channel_pattern(5) | indent(8) }}
 
   structure/u_channel_7:
     desc: 1120 Series U-Channel (7 Hole, 192mm Length)
@@ -268,6 +588,8 @@ parts:
     sku: 1120-0007-0192
     url: https://www.gobilda.com/1120-series-u-channel-7-hole-192mm-length/
     type: step
+    implements:
+      {{ channel_pattern(7) | indent(8) }}
 
   structure/u_channel_9:
     desc: 1120 Series U-Channel (9 Hole, 240mm Length)
@@ -275,6 +597,8 @@ parts:
     sku: 1120-0009-0240
     url: https://www.gobilda.com/1120-series-u-channel-9-hole-240mm-length/
     type: step
+    implements:
+      {{ channel_pattern(9) | indent(8) }}
 
   structure/u_channel_low_3:
     desc: 1121 Series Low-Side U-Channel (3 Hole, 96mm Length)
@@ -289,3 +613,7 @@ parts:
     sku: 1121-0007-0192
     url: https://www.gobilda.com/1121-series-low-side-u-channel-7-hole-192mm-length/
     type: step
+
+assemblies:
+  examples/wormgear:
+    type: assy
