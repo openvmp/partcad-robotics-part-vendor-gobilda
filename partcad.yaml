@@ -1,4 +1,4 @@
-desc: goBILDA parts
+desc: goBILDA® is a modern build system designed for educators and students. It’s metric, lightweight, and has an ever-growing library of parts.
 url: "https://gobilda.com/"
 
 import:
@@ -617,3 +617,16 @@ parts:
 assemblies:
   examples/wormgear:
     type: assy
+    desc: A sample assembly demonstating some typical pattern applications.
+
+render:
+  readme:
+    exclude:
+      - sketches
+      - interfaces
+      - parts
+  svg:
+    exclude:
+      - sketches
+      - interfaces
+      - parts
