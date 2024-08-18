@@ -26,6 +26,9 @@ links:
       withParams:
         moveZ: 8.0
       name: gear
+      # TODO(clairbee): Autodetect the interface by the instance name/pattern
+      # toInstance: inner-TL*threaded
+      to: /pub/std/metric/m:m4-threaded-thru-4
       toInstance: inner-TL
 
   - part: hardware/screw_m4_0.7mm_12mm
@@ -34,6 +37,7 @@ links:
       withParams:
         moveZ: 8.0
       name: gear
+      to: /pub/std/metric/m:m4-threaded-thru-4
       toInstance: inner-TR
 
   - part: hardware/screw_m4_0.7mm_12mm
@@ -42,6 +46,7 @@ links:
       withParams:
         moveZ: 8.0
       name: gear
+      to: /pub/std/metric/m:m4-threaded-thru-4
       toInstance: inner-BL
 
   - part: hardware/screw_m4_0.7mm_12mm
@@ -50,6 +55,7 @@ links:
       withParams:
         moveZ: 8.0
       name: gear
+      to: /pub/std/metric/m:m4-threaded-thru-4
       toInstance: inner-BR
 
   - part: motion/bearing_flanged_8mmREX
