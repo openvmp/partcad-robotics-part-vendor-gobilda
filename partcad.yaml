@@ -220,7 +220,7 @@ parts:
     desc: 2920 Series Steel Set-Screw Collar (6mm Bore) - 2 Pack
     vendor: gobilda
     sku: 2920-0001-0006
-    count_per_sku: 2,
+    count_per_sku: 2
     url: https://www.gobilda.com/2920-series-steel-set-screw-collar-6mm-bore-2-pack/
     type: step
 
@@ -473,7 +473,7 @@ parts:
     desc: 1501 Series M4 x 0.7mm Standoff (6mm OD, 43mm Length) - 4 Pack
     vendor: gobilda
     sku: 1501-0006-0430
-    count_per_sku: 4,
+    count_per_sku: 4
     url: https://www.gobilda.com/1501-series-m4-x-0-7mm-standoff-6mm-od-43mm-length-4-pack/
     type: step
 
