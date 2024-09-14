@@ -198,7 +198,7 @@ parts:
     desc: 1611 Series Flanged Ball Bearing (8mm REX ID x 14mm OD, 5mm Thickness) - 2 Pack
     vendor: gobilda
     sku: 1611-0514-4008
-    count_per_sku: 2,
+    count_per_sku: 2
     url: https://www.gobilda.com/1611-series-flanged-ball-bearing-8mm-rex-id-x-14mm-od-5mm-thickness-2-pack/
     type: step
     implements:
