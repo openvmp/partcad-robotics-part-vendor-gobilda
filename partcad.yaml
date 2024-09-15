@@ -1,5 +1,6 @@
 desc: goBILDA® is a modern build system designed for educators and students.
 url: "https://gobilda.com/"
+partcad: ">=0.7.2"
 
 docs:
   name: /pub/robotics/parts/gobilda
