@@ -28,7 +28,7 @@ links:
       name: gear
       # TODO(clairbee): Autodetect the interface by the instance name/pattern
       # toInstance: inner-TL*threaded
-      to: /pub/std/metric/m:m4-threaded-thru-4
+      to: //pub/std/metric/m:m4-threaded-thru-4
       toInstance: inner-TL
 
   - part: hardware/screw_m4_0.7mm_12mm
@@ -37,7 +37,7 @@ links:
       withParams:
         moveZ: 8.0
       name: gear
-      to: /pub/std/metric/m:m4-threaded-thru-4
+      to: //pub/std/metric/m:m4-threaded-thru-4
       toInstance: inner-TR
 
   - part: hardware/screw_m4_0.7mm_12mm
@@ -46,7 +46,7 @@ links:
       withParams:
         moveZ: 8.0
       name: gear
-      to: /pub/std/metric/m:m4-threaded-thru-4
+      to: //pub/std/metric/m:m4-threaded-thru-4
       toInstance: inner-BL
 
   - part: hardware/screw_m4_0.7mm_12mm
@@ -55,7 +55,7 @@ links:
       withParams:
         moveZ: 8.0
       name: gear
-      to: /pub/std/metric/m:m4-threaded-thru-4
+      to: //pub/std/metric/m:m4-threaded-thru-4
       toInstance: inner-BR
 
   - part: motion/bearing_flanged_8mmREX
@@ -168,10 +168,10 @@ links:
         turnZ: 60
       name: bearing-worm-2
       # TODO(clairbee): Autodetect the angle by using a second port pair
-      # with: "/pub/std/metric/m:m4-threaded-8"
+      # with: "//pub/std/metric/m:m4-threaded-8"
       # withInstance: side0-1
       # name: channel
-      # to: "/pub/std/metric/m:m4-thru-2.5"
+      # to: "//pub/std/metric/m:m4-thru-2.5"
       # toInstance: left-inner-1-1-00
 
   - part: hardware/screw_m4_0.7mm_12mm
@@ -181,7 +181,7 @@ links:
         moveZ: 2.5
       name: mount
       # TODO(clairbee): Autodetect the interface by the instance name
-      to: "/pub/std/metric/m:m4-threaded-thru-8"
+      to: "//pub/std/metric/m:m4-threaded-thru-8"
       toInstance: side0-0
 
   - part: hardware/screw_m4_0.7mm_12mm
@@ -190,7 +190,7 @@ links:
       withParams:
         moveZ: 2.5
       name: mount
-      to: "/pub/std/metric/m:m4-threaded-thru-8"
+      to: "//pub/std/metric/m:m4-threaded-thru-8"
       toInstance: side0-1
 
   - part: hardware/screw_m4_0.7mm_12mm
@@ -199,7 +199,7 @@ links:
       withParams:
         moveZ: 2.5
       name: mount
-      to: "/pub/std/metric/m:m4-threaded-thru-8"
+      to: "//pub/std/metric/m:m4-threaded-thru-8"
       toInstance: side2-0
 
   - part: hardware/screw_m4_0.7mm_12mm
@@ -208,7 +208,7 @@ links:
       withParams:
         moveZ: 2.5
       name: mount
-      to: "/pub/std/metric/m:m4-threaded-thru-8"
+      to: "//pub/std/metric/m:m4-threaded-thru-8"
       toInstance: side2-1
 
   - part: hardware/spacer_plastic_8mm_1mm
