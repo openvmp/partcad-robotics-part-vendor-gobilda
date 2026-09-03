@@ -1,4 +1,4 @@
-# /pub/robotics/parts/gobilda
+# //pub/robotics/parts/gobilda
 
 goBILDA® is a modern build system designed for educators and students.
 

@@ -3,14 +3,14 @@ url: "https://gobilda.com/"
 partcad: ">=0.7.2"
 
 docs:
-  name: /pub/robotics/parts/gobilda
+  name: //pub/robotics/parts/gobilda
   intro: It’s metric, lightweight, and has an ever-growing library of parts.
 
 import:
   pub:
     onlyInRoot: True
     type: git
-    url: https://github.com/openvmp/partcad-index/
+    url: https://github.com/partcad/partcad-index/
 
 sketches:
   8mmREX:
@@ -43,7 +43,7 @@ interfaces:
         max: 360
         default: 0
     mates:
-      - "/pub/std/metric/m:m8-thru"
+      - "//pub/std/metric/m:m8-thru"
   {% for depth in [0.7, 5, 8, 32] %}
   8mmREX-thru-{{ depth }}:
     desc: Through hole of {{ depth }}mm depth for 8mm REX shaft
@@ -63,12 +63,12 @@ interfaces:
         desc: Offset on the shaft
     mates:
       - 8mmREX-thru
-      - "/pub/std/metric/m:m8-thru"
+      - "//pub/std/metric/m:m8-thru"
 
   ### Patterns ###
   # 16mm pattern
 {% macro pattern_4xM4_16mm(opening) %}
-"/pub/std/metric/m:m4-{{ opening }}":
+"//pub/std/metric/m:m4-{{ opening }}":
   TL: [[-8, 8, 0], [0, 0, 1], 270]
   TR: [[8, 8, 0], [0, 0, 1], 180]
   BR: [[8, -8, 0], [0, 0, 1], 90]
@@ -137,7 +137,7 @@ parts:
     url: https://www.gobilda.com/2802-series-zinc-plated-steel-button-head-screw-m4-x-0-7mm-12mm-length-25-pack/
     type: step
     implements:
-      "/pub/std/metric/m:m4-screw-12": [[0, 0, -2.2], [1, 0, 0], 0]
+      "//pub/std/metric/m:m4-screw-12": [[0, 0, -2.2], [1, 0, 0], 0]
 
   hardware/spacer_plastic_5mm_1mm:
     desc: 1500 Series Plastic Spacer (5mm ID x 7mm OD, 1mm Thickness) - 12 Pack
@@ -155,7 +155,7 @@ parts:
     url: https://www.gobilda.com/1500-series-plastic-spacer-8mm-id-x-10mm-od-1mm-thickness-12-pack/
     type: step
     implements:
-      "/pub/std/metric/m:m8-thru-1":
+      "//pub/std/metric/m:m8-thru-1":
         side0: [[0, 0, 0], [1, 0, 0], -90]
         side1: [[0, 1, 0], [1, 0, 0], 90]
 
@@ -167,7 +167,7 @@ parts:
     url: https://www.gobilda.com/1522-series-8mm-id-spacer-10mm-od-4mm-length-4-pack/
     type: step
     implements:
-      "/pub/std/metric/m:m8-thru-4":
+      "//pub/std/metric/m:m8-thru-4":
         side0: [[0, -2, 0], [1, 0, 0], -90]
         side1: [[0, 2, 0], [1, 0, 0], 90]
 
@@ -208,7 +208,7 @@ parts:
         # flange-side: [[0, 5, 0], [1, 0, 0], 90]
         clean-side: [[0, 0, 0], [0.94, -0.25, -0.25], 266.16]
         flange-side: [[0, 5, 0], [-0.94, 0.25, -0.25], 266.16]
-      "/pub/std/metric/m:m14-shaft-2": [[0, 4, 0], [1, 0, 0], -90]
+      "//pub/std/metric/m:m14-shaft-2": [[0, 4, 0], [1, 0, 0], -90]
 
   motion/collar_clamping_8mmREX:
     desc: 2910 Series Aluminum Clamping Collar (8mm REX ID x 20mm OD, 9mm Length)
@@ -260,9 +260,9 @@ parts:
         ledged: [[-3.875, 17.666, -4.4], [0.79, -0.61, 0.0], 180]
         flat: [[-3.875, 17.666, -14.4], [0, 0, 1], -15]
       # The hub provides a ledge that can be used as a 14mm wide 2mm long shaft
-      "/pub/std/metric/m:m14-shaft-2": [[-3.94, 17.67, -6.4], [0, 1, 0], 180]
+      "//pub/std/metric/m:m14-shaft-2": [[-3.94, 17.67, -6.4], [0, 1, 0], 180]
       # The outer perimeter of the hub can be used as a 32m wide 8mm long shaft
-      "/pub/std/metric/m:m32-shaft-8":
+      "//pub/std/metric/m:m32-shaft-8":
         ledged: [[-3.875, 17.666, -6.4], [0, 1, 0], 0]
         flat: [[-3.875, 17.666, -14.4], [0, 1, 0], 180]
 
@@ -374,7 +374,7 @@ parts:
       4xM4-16mm-pattern-threaded-thru-4mm:
         inner: [[0.5, 0, 0], [-0.68, -0.28, -0.68], 211.4]
         outer: [[4.5, 0, 0], [0.36, 0.86, -0.36], 261.58]
-      "/pub/std/metric/m:m14-thru-2":
+      "//pub/std/metric/m:m14-thru-2":
         inner: [[0.5, 0, 0], [0, 1, 0], 90]
         outer: [[4.5, 0, 0], [0, 1, 0], -90]
 
@@ -406,7 +406,7 @@ parts:
     url: https://www.gobilda.com/1201-series-quad-block-pattern-mount-43-2/
     type: step
     implements:
-      "/pub/std/metric/m:m4-threaded-thru-8":
+      "//pub/std/metric/m:m4-threaded-thru-8":
         side0-0: [[-21.5, 8, -16], [0, 1, 0], 90]
         side0-1: [[-21.5, 8, 16], [0, 1, 0], 90]
         side1-0: [[-16, 8, -21.5], [0, 1, 0], 0]
@@ -415,7 +415,7 @@ parts:
         side2-1: [[21.5, 8, -16], [0, 1, 0], -90]
         side3-0: [[16, 8, 21.5], [0, 1, 0], 180]
         side3-1: [[-16, 8, 21.5], [0, 1, 0], 180]
-      "/pub/std/metric/m:m4-threaded-thru-12":
+      "//pub/std/metric/m:m4-threaded-thru-12":
         front-0-0-00: [[-16, 0, 16], [1, 0, 0], -90]
         front-0-1-00: [[-16, 0, -16], [1, 0, 0], -90]
         front-1-0-10: [[16, 0, 16], [1, 0, 0], -90]
@@ -424,7 +424,7 @@ parts:
         rear-0-1: [[-16, 12, -16], [1, 0, 0], 90]
         rear-1-0: [[16, 12, 16], [1, 0, 0], 90]
         rear-1-1: [[16, 12, -16], [1, 0, 0], 90]
-      "/pub/std/metric/m:m4-threaded-thru-4":
+      "//pub/std/metric/m:m4-threaded-thru-4":
         front-0-l: [[{{ -16 * SQRT_2 / 2 }}, 0, 0], [1, 0, 0], -90]
         front-0-t: [[0, 0, {{ 16 * SQRT_2 / 2 }}], [1, 0, 0], -90]
         front-0-b: [[0, 0, {{ -16 * SQRT_2 / 2 }}], [1, 0, 0], -90]
@@ -433,7 +433,7 @@ parts:
         rear-0-t: [[0, 4, {{ 16 * SQRT_2 / 2 }}], [1, 0, 0], 90]
         rear-0-b: [[0, 4, {{ -16 * SQRT_2 / 2 }}], [1, 0, 0], 90]
         rear-0-r: [[{{ 16 * SQRT_2 / 2 }}, 4, 0], [1, 0, 0], 90]
-      "/pub/std/metric/m:m4-thru-4":
+      "//pub/std/metric/m:m4-thru-4":
         front-0-0-10: [[-8, 0, 16], [1, 0, 0], -90]
         front-0-0-01: [[-16, 0, 8], [1, 0, 0], -90]
         front-0-1-10: [[-8, 0, -16], [1, 0, 0], -90]
@@ -450,7 +450,7 @@ parts:
         rear-1-0-11: [[16, 4, 8], [1, 0, 0], 90]
         rear-1-1-00: [[8, 4, -16], [1, 0, 0], 90]
         rear-1-1-11: [[16, 4, -8], [1, 0, 0], 90]
-      "/pub/std/metric/m:m4-thru-4-slotted-2":
+      "//pub/std/metric/m:m4-thru-4-slotted-2":
         front-0-0-11: [[-8, 0, 8], [1, 0, 0], -90]
         front-0-1-11: [[-8, 0, -8], [1, 0, 0], -90]
         front-1-0-01: [[8, 0, 8], [1, 0, 0], -90]
@@ -459,7 +459,7 @@ parts:
         rear-0-1-11: [[-8, 4, -8], [1, 0, 0], 90]
         rear-1-0-01: [[8, 4, 8], [1, 0, 0], 90]
         rear-1-1-01: [[8, 4, -8], [1, 0, 0], 90]
-      "/pub/std/metric/m:m14-hole-3.5":
+      "//pub/std/metric/m:m14-hole-3.5":
         front: [[0, 1, 0], [1, 0, 0], -90]
         rear: [[0, 4, 0], [1, 0, 0], 90]
 
@@ -480,7 +480,7 @@ parts:
 
 
 {% macro channel_pattern(size) %}
-"/pub/std/metric/m:m14-hole-2.5":
+"//pub/std/metric/m:m14-hole-2.5":
   {% for i in range(size) %}
   top-inner-{{i}}: [[0, {{ 24 + 24*i }}, 0], [1, 0, 0], 0]
   top-outer-{{i}}: [[0, {{ 24 + 24*i }}, 2.5], [1, 0, 0], 180]
@@ -490,7 +490,7 @@ parts:
   left-outer-{{i}}: [[-24, {{ 24 + 24*i }}, -21.5], [0, 1, 0], 90]
   {% endfor %}
 
-"/pub/std/metric/m:m4-thru-2.5":
+"//pub/std/metric/m:m4-thru-2.5":
   {% for j in range(size + 1) %}
   left-outer-{{ j }}-0-00: [[-24, {{ 24 * j + 8 }}, {{ -21.5 + 16 }}], [0, 1, 0], 90]
   left-outer-{{ j }}-0-10: [[-24, {{ 24 * j + 16 }}, {{ -21.5 + 16 }}], [0, 1, 0], 90]
@@ -518,7 +518,7 @@ parts:
   top-inner-{{ j }}-1-10: [[-16, {{ 24 * j + 16 }}, 0], [0, 1, 0], 0]
   {% endfor %}
 
-"/pub/std/metric/m:m4-thru-4-slotted-2":
+"//pub/std/metric/m:m4-thru-4-slotted-2":
   {% for j in range(size + 1) %}
   left-outer-{{ j }}-0-01: [[-24, {{ 24 * j + 8 }}, {{ -21.5 + 8 }}], [0, 1, 0], 90]
   left-outer-{{ j }}-0-11: [[-24, {{ 24 * j + 16 }}, {{ -21.5 + 8 }}], [0, 1, 0], 90]
@@ -552,7 +552,7 @@ parts:
   top-inner-{{ j }}-c: [[0, {{ 24 * (j + 1) - 8 * SQRT_2 }}, 0], [0, 1, 0], 0]
   {% endfor %}
 
-"/pub/std/metric/m:m4-thru-4-slotted-4":
+"//pub/std/metric/m:m4-thru-4-slotted-4":
   {% for j in range(size) %}
   left-outer-{{ j }}-t: [[-24, {{ 24 * (j + 1) }}, -5.5], [0, 1, 0], 90]
   left-inner-{{ j }}-t: [[-21.5, {{ 24 * (j + 1) }}, -5.5], [0, 1, 0], -90]
